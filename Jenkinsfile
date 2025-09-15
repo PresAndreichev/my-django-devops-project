@@ -19,7 +19,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'pytest || true'  // use || true if you don't have tests yet, so pipeline doesn't fail
+                sh 'pytest || true'  // allows pipeline to continue if no tests yet
             }
         }
 
