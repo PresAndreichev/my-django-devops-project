@@ -1,25 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Install Dependencies') {
+        stage('Checkout') {
             steps {
-                sh 'pip install -r requirements.txt'
+                git url: 'https://github.com/PresAndreichev/my-django-devops-project.git', branch: 'main'
             }
         }
-        stage('Run Tests') {
+        stage('Build') {
             steps {
-                sh 'pytest'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t my-django-app .'
-            }
-        }
-        stage('Deploy Container') {
-            steps {
-                sh 'docker stop myapp || true && docker rm myapp || true'
-                sh 'docker run -d -p 8000:8000 --name myapp my-django-app'
+                // Now you're in a Git directory
+                sh 'git remote -v'
             }
         }
     }
