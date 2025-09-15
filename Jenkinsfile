@@ -18,7 +18,8 @@ pipeline {
         }
         stage('Deploy Container') {
             steps {
-                sh 'docker run -d -p 8000:8000 my-django-app'
+                sh 'docker stop myapp || true && docker rm myapp || true'
+                sh 'docker run -d -p 8000:8000 --name myapp my-django-app'
             }
         }
     }
