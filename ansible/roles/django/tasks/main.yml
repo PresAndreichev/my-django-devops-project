@@ -1,0 +1,9 @@
+- name: Copy docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/myapp/docker-compose.yml
+
+- name: Start docker-compose
+  command: docker compose up -d
+  args:
+    chdir: /opt/myapp
