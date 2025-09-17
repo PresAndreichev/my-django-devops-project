@@ -1,10 +1,7 @@
 version: "3.9"
-
 services:
   myapp:
-    image: my-django-devops-project:latest
+    build: .
     container_name: myapp
     ports:
       - "8080:8080"
-    environment:
-      DJANGO_SETTINGS_MODULE: myapp.settings
