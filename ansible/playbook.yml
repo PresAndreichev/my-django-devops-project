@@ -17,6 +17,11 @@
       copy:
         src: files/Dockerfile
         dest: /opt/myapp/Dockerfile
+    
+    - name: Copy requirements.txt
+      copy:
+        src: files/requirements.txt
+        dest: /opt/myapp/requirements.txt
 
     - name: Start Docker containers
       command:
