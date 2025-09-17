@@ -10,12 +10,12 @@
 
     - name: Copy docker-compose file
       copy:
-        src: ansible/files/docker-compose.yml
+        src: files/docker-compose.yml
         dest: /opt/myapp/docker-compose.yml
 
     - name: Copy Dockerfile
       copy:
-        src: ansible/files/Dockerfile
+        src: files/Dockerfile
         dest: /opt/myapp/Dockerfile
 
     - name: Start Docker containers
