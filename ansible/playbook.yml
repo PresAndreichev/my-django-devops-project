@@ -1,4 +1,3 @@
----
 - name: Deploy Django app with Docker
   hosts: webservers
   become: yes
@@ -8,14 +7,18 @@
       file:
         path: /opt/myapp
         state: directory
-        mode: '0755'
 
     - name: Copy docker-compose file
       copy:
-        src: docker-compose.yml
+        src: ansible/files/docker-compose.yml
         dest: /opt/myapp/docker-compose.yml
 
+    - name: Copy Dockerfile
+      copy:
+        src: ansible/files/Dockerfile
+        dest: /opt/myapp/Dockerfile
+
     - name: Start Docker containers
-      command: docker compose up -d
-      args:
+      command:
+        cmd: docker compose up -d
         chdir: /opt/myapp
