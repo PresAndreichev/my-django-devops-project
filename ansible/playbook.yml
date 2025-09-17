@@ -1,6 +1,21 @@
-- hosts: webservers
+---
+- name: Deploy Django app with Docker
+  hosts: webservers
   become: yes
+
   tasks:
-    - name: Deploy Django app with Docker
-      include_role:
-        name: django
+    - name: Ensure /opt/myapp exists
+      file:
+        path: /opt/myapp
+        state: directory
+        mode: '0755'
+
+    - name: Copy docker-compose file
+      copy:
+        src: docker-compose.yml
+        dest: /opt/myapp/docker-compose.yml
+
+    - name: Start Docker containers
+      command: docker compose up -d
+      args:
+        chdir: /opt/myapp
